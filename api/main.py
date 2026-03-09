@@ -7,7 +7,8 @@ import numpy as np
 import joblib
 
 MODEL_PATH = "models/xgb_final.pkl"
-THRESHOLD = 0.20
+REVIEW_THRESHOLD = 0.10   # manual verification / review queue
+DECLINE_THRESHOLD = 0.70  # stricter decision threshold 
 
 app = FastAPI(title="Credit Risk Scoring API", version="1.0")
 
@@ -91,10 +92,15 @@ def predict(applicant: LoanApplication):
     pd_default = float(model.predict_proba(X)[:, 1][0])
     decision_default = int(pd_default >= THRESHOLD)
 
+    review_flag = int(pd_default >= REVIEW_THRESHOLD)
+    decline_flag = int(pd_default >= DECLINE_THRESHOLD)
+
     return {
         "pd_default": round(pd_default, 6),
-        "threshold": THRESHOLD,
-        "decision_default": decision_default
+        "review_threshold": REVIEW_THRESHOLD,
+        "review_flag": review_flag,
+        "decline_threshold": DECLINE_THRESHOLD,
+        "decline_flag": decline_flag
     }
 
 @app.get("/")
