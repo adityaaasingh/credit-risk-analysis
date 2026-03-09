@@ -119,6 +119,7 @@ From repo root:
 curl -X POST "https://credit-risk-analysis-iuyk.onrender.com/predict" \
   -H "Content-Type: application/json" \
   -d @examples/request.json
+```
 
 ### Example Request Body
 {
