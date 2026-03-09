@@ -108,5 +108,9 @@ def root():
     return {
         "message": "Credit Risk API is running. See /docs for Swagger UI.",
         "health": "/health",
-        "predict": "/predict"
+        "predict": "/predict",
+        "thresholds": {
+            "review_threshold": REVIEW_THRESHOLD,
+            "decline_threshold": DECLINE_THRESHOLD
+        }    
     }
