@@ -144,22 +144,7 @@ curl -X POST "https://credit-risk-analysis-iuyk.onrender.com/predict" \
   "decline_flag": 0
 }
 
-##Repo Stricture
-
-credit-risk-analysis/
-  api/
-    main.py                 # FastAPI app (public scoring endpoint)
-  src/
-    prepare_data.py         # build loans_clean.parquet from raw CSV
-    features.py             # ColumnTransformer preprocessing
-    data.py                 # load_data helper
-    train.py                # model training/evaluation + saving model
-  data/
-    loans_clean.parquet     # cleaned modelling dataset (generated)
-  models/
-    xgb_final.pkl           # trained pipeline (preprocess + model)
-  examples/
-    request.json            # sample API request
-  figures/                  # EDA plots
-  requirements.txt
-  README.md
+### Notes/Limitations
+- This project is for educational/portfolio purposes and is not intended for real lending decisions.
+- Threshold selection depends on business goals (minimising defaults vs maximising approvals) and operational capacity (manual review volume).
+- Performance may vary across time periods (loan “vintages”) and feature availability at application time.
