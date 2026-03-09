@@ -16,8 +16,8 @@ This project builds a credit risk model that predicts the **probability of loan 
 Given borrower + loan application features, predict whether a loan will **default (Charged Off)** vs **Fully Paid**.  
 The deployed system returns:
 - `pd_default` = predicted probability of default
-- `review_flag` = **manual review trigger** (threshold-based)
-- `decline_flag` = **stricter high-risk flag** (threshold-based)
+- `review_flag`: **triage flag** for manual review / verification
+- `decline_flag`: stricter high-risk flag (optional decision rule)
 
 This mirrors a realistic workflow where the model can be used to **route applications into different actions** (e.g., review/verification vs stricter filtering).
 
@@ -148,3 +148,8 @@ curl -X POST "https://credit-risk-analysis-iuyk.onrender.com/predict" \
 - This project is for educational/portfolio purposes and is not intended for real lending decisions.
 - Threshold selection depends on business goals (minimising defaults vs maximising approvals) and operational capacity (manual review volume).
 - Performance may vary across time periods (loan “vintages”) and feature availability at application time.
+
+
+## Screenshot of Interface
+```md
+![Swagger UI screenshot](figures/swagger_ui.png)
