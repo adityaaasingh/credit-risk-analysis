@@ -96,3 +96,11 @@ def predict(applicant: LoanApplication):
         "threshold": THRESHOLD,
         "decision_default": decision_default
     }
+
+@app.get("/")
+def root():
+    return {
+        "message": "Credit Risk API is running. See /docs for Swagger UI.",
+        "health": "/health",
+        "predict": "/predict"
+    }
