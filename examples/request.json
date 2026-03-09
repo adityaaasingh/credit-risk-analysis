@@ -1,0 +1,12 @@
+{
+    "loan_amnt": 10000,
+    "term": " 36 months",
+    "int_rate": 12.5,
+    "grade": "B",
+    "annual_inc": 70000,
+    "dti": 18.2,
+    "revol_util": 45,
+    "purpose": "credit_card",
+    "home_ownership": "RENT",
+    "verification_status": "Verified"
+  }
