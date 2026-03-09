@@ -8,7 +8,7 @@ import joblib
 
 MODEL_PATH = "models/xgb_final.pkl"
 REVIEW_THRESHOLD = 0.10   # manual verification / review queue
-DECLINE_THRESHOLD = 0.70  # stricter decision threshold 
+DECLINE_THRESHOLD = 0.30  # stricter decision threshold 
 
 app = FastAPI(title="Credit Risk Scoring API", version="1.0")
 
