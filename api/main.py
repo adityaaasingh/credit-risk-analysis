@@ -76,7 +76,8 @@ def predict(applicant: LoanApplication):
     """
     Returns:
       - pd_default: predicted probability of default
-      - decision_default: 1 if pd_default >= THRESHOLD else 0
+      - review_flag: 1 if pd_default >= REVIEW_THRESHOLD (manual review)
+      - decline_flag: 1 if pd_default >= DECLINE_THRESHOLD (stricter)
     """
     data = applicant.model_dump()
 
@@ -90,7 +91,6 @@ def predict(applicant: LoanApplication):
     X = pd.DataFrame([row])
 
     pd_default = float(model.predict_proba(X)[:, 1][0])
-    decision_default = int(pd_default >= THRESHOLD)
 
     review_flag = int(pd_default >= REVIEW_THRESHOLD)
     decline_flag = int(pd_default >= DECLINE_THRESHOLD)
