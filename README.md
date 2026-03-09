@@ -53,7 +53,7 @@ Implemented in `src/train.py` and mirrored in the API:
 - `loan_to_income = loan_amnt / annual_inc`
 - `utilization_flag = 1 if revol_util > 80 else 0`
 
-### 3) Preprocessing (production-style)
+### 3) Preprocessing 
 Implemented in `src/features.py` using a scikit-learn `ColumnTransformer` so training and inference use identical transforms:
 - **numeric:** median imputation (+ optional scaling)
 - **categorical:** most-frequent imputation + OneHotEncoder (`handle_unknown="ignore"`, capped categories)
@@ -112,7 +112,7 @@ This makes the endpoint usable as a **triage tool** (review queue) and a stricte
 
 ## API Usage
 
-### Example Request (curl)
+### Example Request 
 From repo root:
 
 ```bash
