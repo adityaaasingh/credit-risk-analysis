@@ -5,6 +5,7 @@
 This project builds a credit risk model that predicts the **probability of loan default** and exposes the model via a **public FastAPI endpoint** (with Swagger docs). It demonstrates an end-to-end, production-style ML workflow: data preparation → modelling → evaluation → model saving → API inference → deployment.
 
 ## Live Demo (Public API)
+- **Frontend (React):** <https://credit-risk-analysis-murex.vercel.app/>
 - **Swagger UI:** https://credit-risk-analysis-iuyk.onrender.com/docs  
 - **Health check:** https://credit-risk-analysis-iuyk.onrender.com/health  
 - **Root:** https://credit-risk-analysis-iuyk.onrender.com/  
@@ -95,6 +96,21 @@ Because credit decisions depend on the operating policy, I report metrics at two
 
 In general, lowering the threshold increases recall (catching more defaults) at the cost of precision (flagging more non-default loans), reflecting the typical precision–recall trade-off in credit risk modelling.
 
+---
+## Frontend (React)
+
+The project includes a React + TypeScript frontend (Vite) that calls the deployed API and displays:
+- PD as a percentage + progress bar
+- Decision badge (Approve / Review / Reject)
+- Threshold markers (10% review, 30% reject)
+- Dropdown inputs and validation for mandatory fields
+
+### Run frontend locally
+
+```bash
+cd frontend
+npm install
+```
 ---
 
 ## Deployment Policy (API Flags)
