@@ -357,7 +357,7 @@ export default function App() {
 
       <footer className="footer">
         <p>
-          CreditRisk AI ·{' '}
+          CreditRisk Score ·{' '}
           <a href="https://credit-risk-analysis-iuyk.onrender.com/docs"
             target="_blank" rel="noopener noreferrer">
             API Documentation ↗
