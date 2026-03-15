@@ -2,7 +2,7 @@
 
 # Credit Risk Analysis + Deployed Scoring API
 
-This project builds a credit risk model that predicts the **probability of loan default** and exposes the model via a **public FastAPI endpoint** (with Swagger docs). It demonstrates an end-to-end, production-style ML workflow: data preparation → modelling → evaluation → model saving → API inference → deployment.
+This project trains a credit risk model to estimate the probability of loan default and deploys it as a public FastAPI scoring API (with Swagger docs) and a React frontend. It demonstrates an end-to-end workflow: data preparation → feature engineering → model training/evaluation → model persistence → API inference → deployment.
 
 ## Live Demo (Public API)
 - **Frontend (React):** <https://credit-risk-analysis-murex.vercel.app/>
