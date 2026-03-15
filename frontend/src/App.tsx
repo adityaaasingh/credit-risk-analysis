@@ -10,7 +10,7 @@ import {
 } from './constants'
 import type { LoanFormData, ApiResponse, Decision, FieldDef } from './types'
 
-const API_BASE = "https://credit-risk-analysis-iuyk.onrender.com/predict";
+const API_BASE = import.meta.env.VITE_API_BASE;
 
 function getDecision(r: ApiResponse): Decision {
   if (r.decline_flag === 1) return 'Reject'
@@ -66,7 +66,7 @@ export default function App() {
     setApiError(null)
     setResult(null)
     try {
-      const res = await fetch(API_BASE, {
+      const res = await fetch(`${API_BASE}/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(buildPayload(form)),
