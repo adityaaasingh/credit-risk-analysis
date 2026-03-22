@@ -283,6 +283,18 @@
   font-weight: 500;
 }
 
+/* ─── Waking banner ──────────────────────────────────────── */
+.waking-banner {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: var(--radius-sm);
+  color: #7c5800;
+  font-size: 13px;
+  font-weight: 500;
+}
+
 /* ─── Buttons ────────────────────────────────────────────── */
 .btn-row {
   display: flex;

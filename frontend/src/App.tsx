@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import { predictWithWakeup } from './utils/api'
 import {
   MANDATORY_FIELDS,
   OPTIONAL_FIELDS,
@@ -9,8 +10,6 @@ import {
   NUMERIC_FIELDS,
 } from './constants'
 import type { LoanFormData, ApiResponse, Decision, FieldDef } from './types'
-
-const API_BASE = import.meta.env.VITE_API_BASE;
 
 function getDecision(r: ApiResponse): Decision {
   if (r.decline_flag === 1) return 'Reject'
@@ -37,6 +36,7 @@ export default function App() {
   const [errors, setErrors] = useState<Partial<Record<keyof LoanFormData, string>>>({})
   const [result, setResult] = useState<ApiResponse | null>(null)
   const [loading, setLoading] = useState(false)
+  const [waking, setWaking] = useState(false)
   const [apiError, setApiError] = useState<string | null>(null)
   const [optionalOpen, setOptionalOpen] = useState(false)
 
@@ -63,23 +63,20 @@ export default function App() {
     e.preventDefault()
     if (!validate()) return
     setLoading(true)
+    setWaking(false)
     setApiError(null)
     setResult(null)
     try {
-      const res = await fetch(`${API_BASE}/predict`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(buildPayload(form)),
-      })
-      if (!res.ok) {
-        const text = await res.text()
-        throw new Error(`API error ${res.status}: ${text}`)
-      }
-      setResult(await res.json())
+      const data = await predictWithWakeup(
+        buildPayload(form),
+        () => setWaking(true),
+      )
+      setResult(data as ApiResponse)
     } catch (err) {
       setApiError(err instanceof Error ? err.message : 'An unexpected error occurred')
     } finally {
       setLoading(false)
+      setWaking(false)
     }
   }
 
@@ -206,6 +203,12 @@ export default function App() {
                 </div>
               )}
             </div>
+
+            {waking && (
+              <div className="waking-banner">
+                ⏳ Backend is waking up (free tier) — this may take ~30 seconds...
+              </div>
+            )}
 
             {apiError && (
               <div className="api-error-banner">
